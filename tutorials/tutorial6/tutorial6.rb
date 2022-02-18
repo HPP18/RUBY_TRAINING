@@ -20,9 +20,8 @@ begin
   p "Enter your filename to open"
   file_name = gets.chomp.to_s
   File.readlines(file_name).each do |file|
-  rescue Errno::ENOENT
-    p "File not found"
-  else
     p file
   end
+rescue Errno::ENOENT
+  p "File not found"
 end
