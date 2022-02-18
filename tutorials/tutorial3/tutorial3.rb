@@ -4,12 +4,12 @@ while (continue)
   num1 = gets.chomp.to_i
 
   puts "Choose operator: [+], [-], [*], [/]"
-  response = gets.chomp
+  operator = gets.chomp
 
   puts "Enter second number:"
   num2 = gets.chomp.to_i
 
-  case response
+  case operator
   when "+"
     answer = num1 + num2
   when "-"
