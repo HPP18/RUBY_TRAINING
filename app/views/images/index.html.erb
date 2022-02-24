@@ -1,0 +1,23 @@
+<% flash.each do |type, msg| %>
+  <div class="alert alert-danger">
+    <%= msg %>
+  </div> 
+<% end %>
+
+<h1>Images</h1>
+<%= form_with url: image_path do |form| %>
+<div>
+  <%= form.label :image %><br>
+  <%= form.file_field :image, class: "form-control", accept: "image/png, image/jpeg, image/jpg" %>
+</div>
+
+<div>
+  <%= form.label :folder_name %><br>
+  <%= form.text_field :folder_name, class: "form-control" %>
+ 
+</div>
+
+<div>
+  <%= form.submit "Upload", class: "btn btn-success mt-3" %>
+</div>
+<% end %>
