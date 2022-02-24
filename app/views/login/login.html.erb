@@ -1,0 +1,29 @@
+<% flash.each do |type, msg| %>
+  <% if type == "notice" %>
+    <div class="alert alert-success">
+      <%= msg %>
+    </div>
+    <% else %>
+    <div class="alert alert-danger">
+      <%= msg %>
+    </div> 
+    <% end %>
+<% end %>
+
+<h1>Login</h1>
+
+<%= form_with url: login_path do |form| %>
+  <div>
+    <%= form.label :email %><br>
+    <%= form.text_field :email, class: "form-control", placeholder: "admin@a.com" %>
+  </div>
+
+  <div>
+    <%= form.label :password %><br>
+    <%= form.password_field :password, class: "form-control", placeholder: "admin" %>
+  </div>
+
+  <div>
+    <%= form.submit "Login", class: "btn btn-success mt-3" %>
+  </div>
+<% end %>

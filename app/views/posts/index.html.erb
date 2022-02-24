@@ -1,0 +1,15 @@
+<% flash.each do |type, msg| %>
+    <div class="alert alert-success">
+      <%= msg %>
+    </div>
+<% end %>
+
+<h1>Posts</h1>
+<p>Hello world</p>
+
+<%= form_with url: logout_path do |form| %>
+  <div>
+    <%= form.submit "Logout", class: "btn btn-success mt-3" %>
+  </div>
+<% end %>
+
