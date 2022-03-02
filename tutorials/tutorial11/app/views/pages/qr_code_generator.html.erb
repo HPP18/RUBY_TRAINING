@@ -1,0 +1,12 @@
+<h1>QR code generator</h1>
+
+<%= form_tag :qr_code_show, method: :get do |f| %>
+  <div class="field">
+    <%= label_tag "Enter text" %>
+    <%= text_field_tag :content, nil, required: true, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Generate QR code", class: "btn btn-success mt-3" %>
+  </div>
+<% end %>
