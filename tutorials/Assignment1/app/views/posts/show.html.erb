@@ -1,0 +1,11 @@
+<%= link_to "All posts", posts_path, class: "btn btn-sm btn-primary mt-3" %>
+
+<h1>Post Details</h1>
+<div class="card">
+  <div class="card-body">
+    <p>Title: <%= @post.title %></p>
+    <p>Description: <%= @post.description %></p>
+    <p>Status: <%= @post.status %></p>
+  </div>
+</div>
+
