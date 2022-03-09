@@ -1,0 +1,30 @@
+<%= link_to "Back", root_path, class: "btn btn-sm btn-primary mt-3" %>
+<%= form_with model: @user do |form| %>
+  <div>
+  <% @user.errors.full_messages_for(:name).each do |message| %>
+    <div><%= message %></div>
+  <% end %>
+    <%= form.label :name %><br>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div>
+  <% @user.errors.full_messages_for(:address).each do |message| %>
+    <div><%= message %></div>
+  <% end %>
+    <%= form.label :address %><br>
+    <%= form.text_field :address, class: "form-control" %>
+  </div>
+
+  <div>
+  <% @user.errors.full_messages_for(:phone).each do |message| %>
+    <div><%= message %></div>
+  <% end %>
+    <%= form.label :phone %><br>
+    <%= form.text_field :phone, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.submit :Update, class: "btn btn-sm btn-success mt-3" %>
+  </div>
+<% end %>
