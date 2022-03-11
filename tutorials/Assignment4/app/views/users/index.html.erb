@@ -1,0 +1,86 @@
+<h1>Users</h1>
+
+<% flash.each do |type, msg| %>
+  <div class="alert alert-success">
+    <%= msg %>
+  </div>
+<% end %>
+
+<%= link_to "Create", new_user_path, class: "btn btn-sm btn-primary" %>
+<%= link_to "See All Posts", posts_path, class: "btn btn-sm btn-warning" %>
+
+<%= form_with url: users_path, method: :get do |form| %>
+  <div class="form-row">
+    <div class="col">
+      <%= form.label :name %><br>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="col">
+      <%= form.label :address %><br>
+      <%= form.text_field :address, class: "form-control" %>
+    </div>
+
+    <div class="col">
+      <%= form.label :user_type %><br>
+      <%= form.radio_button :user_type, 0 %><label for="status_0">Normal User</label>
+      <%= form.radio_button :user_type, 1 %><label for="status_0">Super User</label>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <%= form.label :email %><br>
+      <%= form.text_field :email, class: "form-control" %>
+    </div>
+
+    <div class="col">
+      <%= form.label :date_of_birth %><br>
+      <%= form.date_field :dob, class: "form-control" %>
+    </div>
+
+    <div class="col">
+      <%= form.label :phone %><br>
+      <%= form.text_field :phone, class: "form-control" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.submit :Search, class: "btn btn-sm btn-primary mt-3" %>
+  </div>
+<% end %>
+
+<table class="table table-striped mt-3">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>User Type</th>
+    <th>Phone</th>
+    <th>Address</th>
+    <th>Birthday</th>
+    <th>Operation</th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.id %></td>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.user_type == 1 ? "super user" : "normal user" %></td>
+    <td><%= user.phone %></td>
+    <td><%= user.address %></td>
+    <td><%= user.dob %></td>
+    <td>
+      <%= link_to "View", user_path(user) %>
+      <%= link_to "Edit", edit_user_path(user.id), class: "btn btn-sm btn-warning" %>
+      <%= link_to "Delete", user_path(user.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>
+      </td>
+  </tr>
+  <% end %>
+</table>
+
+<%= form_with url: logout_path do |form| %>
+  <div>
+    <%= form.submit "Logout", class: "btn btn-success mt-3" %>
+  </div>
+<% end %>

@@ -1,0 +1,51 @@
+<h1>Posts</h1>
+
+<% flash.each do |type, msg| %>
+  <div class="alert alert-success">
+    <%= msg %>
+  </div>
+<% end %>
+<%= link_to "Back", users_path, class: "btn btn-sm btn-warning" %>
+<%= link_to "Create Post", new_post_path, class: "btn btn-sm btn-primary" %>
+
+<%= form_with url: logout_path, html: { class: "form-inline  float-right" } do |form| %>
+  <div>
+    <%= form.submit "Logout", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<table class="table table-striped mt-3">
+  <thead>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>Operation</th>
+  </thead>
+  <tbody id="table">
+    <%= render @posts %>
+  </tbody>
+</table>
+
+<%= form_with(model: @post, id: "new_post", local: false) do |form| %>
+
+    <div class="col">
+      <%= form.label :title %><br>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="col">
+      <%= form.label :description %><br>
+      <%= form.text_field :description, class: "form-control" %>
+    </div>
+
+    <div class="col">
+      <%= form.label :status %><br>
+      <%= form.radio_button :status, 0 %><label for="status_0">Public</label>
+      <%= form.radio_button :status, 1 %><label for="status_0">Private</label>
+    </div>
+
+  <div>
+    <%= form.submit :"Add to form", class: "btn btn-sm btn-primary" %>
+  </div>
+<% end %>
+
