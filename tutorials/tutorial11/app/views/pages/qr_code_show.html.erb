@@ -1,0 +1,11 @@
+<h1>Your QR code</h1>
+
+<%= form_tag :qr_code_download, method: :get do |f| %>
+  <div class="field">
+  <%= @svg.html_safe %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Download", class: "btn btn-success mt-3" %>
+  </div>
+<% end %>
