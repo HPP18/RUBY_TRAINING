@@ -1,0 +1,43 @@
+<h1>Posts</h1>
+
+<% flash.each do |type, msg| %>
+  <div class="alert alert-success">
+    <%= msg %>
+  </div>
+<% end %>
+<%= link_to "Back", users_path, class: "btn btn-sm btn-warning" %>
+<%= link_to "Create Post", new_post_path, class: "btn btn-sm btn-primary" %>
+<%= link_to "Download CSV", posts_path(format: "csv"), class: "btn btn-sm btn-success" %>
+
+<%= form_with url: logout_path, html: { class: "form-inline  float-right" } do |form| %>
+  <div>
+    <%= form.submit "Logout", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<table class="table table-striped mt-3">
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>Operation</th>
+  </tr>
+  <% @posts.each do |post| %>
+  <tr>
+    <td><%= link_to post.title, post %></td>
+    <td><%= post.description %></td>
+    <td><%= post.status == "1" ? "private" : "public" %></td>
+    <td>
+      <%= link_to "Edit", edit_post_path(post.id), class: "btn btn-sm btn-warning" %>
+      <%= link_to "Delete", post_path(post.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<h3>Import File</h3>
+
+<%= form_tag import_posts_path, multipart: true do %>
+ <%= file_field_tag :file, class: "form-control" %>
+ <%= submit_tag "Import CSV", class: "btn btn-sm btn-success float-right mt-3" %>
+<% end %>
